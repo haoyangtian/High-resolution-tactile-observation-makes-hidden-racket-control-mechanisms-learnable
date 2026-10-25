@@ -1,0 +1,20 @@
+Component release 0.2.0
+
+This replaces the earlier non-executable redacted excerpt package.
+- Restored original numeric constants, string values and constructor defaults.
+- Removed unconditional import failures and all undefined redaction markers.
+- Included explicit dependencies and standard package installation metadata.
+- Renamed partial hand helper collection to PlanarHandKinematics.
+- Added software tests using synthetic inputs; no study results are asserted.
+- Added graph input validation and support for non-contiguous tensors.
+- Corrected singleton graph handling without changing normal graph behavior.
+- Made graph partition backend selection explicit, with no silent fallback.
+- Made local forest configuration explicit instead of reading mutable globals.
+- Corrected the historical window-normalized temporal block's misleading causal
+  name without changing its numerical implementation. Current encode uses a
+  separate frame-wise path; future-frame independence is tested on that path.
+
+Statistical inference, manuscript metric aggregation, plotting, participant
+records, fitted weights and full experiment orchestration remain outside scope.
+The release does not establish reproducibility of the manuscript's main results.
+SOURCE_MANIFEST.json describes the exact per-module adaptations.

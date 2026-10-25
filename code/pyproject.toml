@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=70"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tactile-algorithm-components"
+version = "0.2.0"
+description = "Extracted tactile model and algorithm components; manuscript statistical workflows excluded"
+readme = {file = "README.txt", content-type = "text/plain"}
+requires-python = ">=3.10"
+dependencies = ["numpy", "torch", "scikit-learn", "networkx"]
+
+[project.optional-dependencies]
+leiden = ["igraph", "leidenalg"]
+
+[tool.setuptools]
+packages = ["tactile_components", "tactile_components.posture", "tactile_components.organization", "tactile_components.spatial", "tactile_components.temporal", "tactile_components.skill", "tactile_components.learning"]
+
+[tool.setuptools.package-dir]
+"tactile_components" = "tactile_components"
+"tactile_components.posture" = "Posture reconstruction"
+"tactile_components.organization" = "Organization"
+"tactile_components.spatial" = "Spatial realization"
+"tactile_components.temporal" = "Temporal realization"
+"tactile_components.skill" = "Skill level estimation"
+"tactile_components.learning" = "Interactive skill leraning"

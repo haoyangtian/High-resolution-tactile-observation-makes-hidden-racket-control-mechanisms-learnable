@@ -1,0 +1,465 @@
+{
+  "release_scope": "algorithm_components_statistics_excluded",
+  "modules": [
+    {
+      "file": "Posture reconstruction/pose_model.py",
+      "source_module": "model.py",
+      "source_sha256": "a7f3f770dabc38d555ad1689cc86264e551f0faaa3508db6221f6ef7b8442bcd",
+      "definitions": [
+        {
+          "name": "GNNSuite",
+          "line_start": 11,
+          "line_end": 104
+        }
+      ],
+      "adaptations": [
+        "Dependency imports isolated from the original application; numerical implementation and defaults retained."
+      ],
+      "sha256": "a1be7dba9eb80bf31a7d0384a973818b5c666d7164521611246b3b86dfc5e02e"
+    },
+    {
+      "file": "Posture reconstruction/hand_kinematics.py",
+      "source_module": "data.py",
+      "source_sha256": "18f0b2cd92e705e44417d0cc6c450589d865458095a0621d0fe70e3f2beffd4b",
+      "definitions": [
+        {
+          "name": "HandPoseEstimator",
+          "line_start": 464,
+          "line_end": 2727
+        }
+      ],
+      "adaptations": [
+        "The selected static helpers are named PlanarHandKinematics, not a complete HandPoseEstimator."
+      ],
+      "sha256": "07f7777ca4af5168697586745c09f78fde75c9db15cad022a07989294319043a"
+    },
+    {
+      "file": "Posture reconstruction/grip_geometry.py",
+      "source_module": "refined_physics_model.py",
+      "source_sha256": "7b2f96331fc405d0b545528c4d0c1a49e89b0d364fb4f45351c937f6897eb35f",
+      "definitions": [
+        {
+          "name": "HandAxis",
+          "line_start": 44,
+          "line_end": 48
+        },
+        {
+          "name": "OctagonPrism",
+          "line_start": 52,
+          "line_end": 56
+        },
+        {
+          "name": "_prism_basis",
+          "line_start": 1443,
+          "line_end": 1453
+        },
+        {
+          "name": "_points_in_poly2d",
+          "line_start": 1484,
+          "line_end": 1505
+        },
+        {
+          "name": "_closest_point_on_poly2d",
+          "line_start": 1508,
+          "line_end": 1531
+        },
+        {
+          "name": "_rotation_matrix_from_axis_angle",
+          "line_start": 1633,
+          "line_end": 1644
+        },
+        {
+          "name": "_apply_rigid",
+          "line_start": 1674,
+          "line_end": 1678
+        },
+        {
+          "name": "_apply_rotation",
+          "line_start": 1681,
+          "line_end": 1685
+        },
+        {
+          "name": "_fit_similarity_transform",
+          "line_start": 1688,
+          "line_end": 1727
+        }
+      ],
+      "adaptations": [
+        "Dependency imports isolated from the original application; numerical implementation and defaults retained."
+      ],
+      "sha256": "f31ddd9509496608b72f3e7e1f2581679e25f1e0dd5fe800b7b40e2fdb86ecd8"
+    },
+    {
+      "file": "Organization/control_model.py",
+      "source_module": "run_modules/manifold_dynamics_framework.py",
+      "source_sha256": "ac332d1e07d3405653f5a4e6c884084812e2bd5e2a3727a41cdff06a247fd03f",
+      "definitions": [
+        {
+          "name": "_stage1_encoder_history_required",
+          "line_start": 872,
+          "line_end": 873
+        },
+        {
+          "name": "_stage1_encoder_frame_valid_mask_np",
+          "line_start": 943,
+          "line_end": 953
+        },
+        {
+          "name": "_stage1_encoder_frame_valid_mask_torch",
+          "line_start": 956,
+          "line_end": 957
+        },
+        {
+          "name": "BiomimeticImpedanceDecoder",
+          "line_start": 2759,
+          "line_end": 2889
+        },
+        {
+          "name": "_GraphTemporalSplitAE",
+          "line_start": 2892,
+          "line_end": 3615
+        },
+        {
+          "name": "_apply_stage2_torque_minmax_scaler_torch",
+          "line_start": 8048,
+          "line_end": 8060
+        }
+      ],
+      "adaptations": [
+        "Renamed the historical _CausalTCNBlock to WindowNormalizedTCNBlock, without changing its numerical behavior: window-wide GroupNorm is not causal on a complete sequence. Current encode uses the separate frame-wise path."
+      ],
+      "sha256": "2e61a77fefa4ae438f6f6a571a565e40bb9162c038a14ffdcfbaeaa5329411b2"
+    },
+    {
+      "file": "Organization/graph_blocks.py",
+      "source_module": "gnn_shared.py",
+      "source_sha256": "c412c4a281737ba1c70b9ef1736df830c0d397edfcfb096f6839b3958f70e85e",
+      "definitions": [
+        {
+          "name": "_expand_adj",
+          "line_start": 13,
+          "line_end": 23
+        },
+        {
+          "name": "_flatten_nodes",
+          "line_start": 26,
+          "line_end": 33
+        },
+        {
+          "name": "_unflatten_nodes",
+          "line_start": 36,
+          "line_end": 41
+        },
+        {
+          "name": "GCNBlock",
+          "line_start": 44,
+          "line_end": 77
+        },
+        {
+          "name": "SAGEBlock",
+          "line_start": 80,
+          "line_end": 102
+        },
+        {
+          "name": "GATBlock",
+          "line_start": 105,
+          "line_end": 139
+        }
+      ],
+      "adaptations": [
+        "Original constructor defaults restored.",
+        "Non-contiguous inputs supported; invalid graph dimensions, nonfinite adjacency and all-masked attention rows rejected."
+      ],
+      "sha256": "55f8f041936b09e6e54f96f4a6ca4f518fe1dc4ff07fd758d8c82d7c4762cc35"
+    },
+    {
+      "file": "Spatial realization/graph_topology.py",
+      "source_module": "graph_core.py",
+      "source_sha256": "68636b247ab47fe337a06519d7d5d7db76b9f8e5d961fa398c88a65ad4962616",
+      "definitions": [
+        {
+          "name": "_adj_from_edges",
+          "line_start": 98,
+          "line_end": 108
+        },
+        {
+          "name": "_pairwise_dists",
+          "line_start": 111,
+          "line_end": 117
+        },
+        {
+          "name": "build_knn_adj",
+          "line_start": 270,
+          "line_end": 301
+        },
+        {
+          "name": "build_radius_adj",
+          "line_start": 304,
+          "line_end": 330
+        },
+        {
+          "name": "build_mst_adj",
+          "line_start": 333,
+          "line_end": 361
+        },
+        {
+          "name": "build_mst_knn_hybrid",
+          "line_start": 364,
+          "line_end": 373
+        },
+        {
+          "name": "build_fully_connected",
+          "line_start": 376,
+          "line_end": 383
+        }
+      ],
+      "adaptations": [
+        "Single-node and zero-neighbor graphs respect self_loop; negative neighbor counts are rejected."
+      ],
+      "sha256": "042672874376a53db42551dec620a4ec258d5fbdb838b88e8b9e521b9a154519"
+    },
+    {
+      "file": "Spatial realization/roi_partition.py",
+      "source_module": "run_modules/synergy_pipeline.py",
+      "source_sha256": "0955f668b8c2ce1c54e7b9407414cf63b280e86aa56c92bc0874d588c3d8edca",
+      "definitions": [
+        {
+          "name": "_edges_from_adj",
+          "line_start": 4132,
+          "line_end": 4142
+        },
+        {
+          "name": "_edge_weights_from_embeddings",
+          "line_start": 4297,
+          "line_end": 4311
+        },
+        {
+          "name": "_modularity_from_edges",
+          "line_start": 4314,
+          "line_end": 4333
+        },
+        {
+          "name": "_partition_graph",
+          "line_start": 4336,
+          "line_end": 4394
+        },
+        {
+          "name": "_reindex_labels_contiguous",
+          "line_start": 4397,
+          "line_end": 4410
+        }
+      ],
+      "adaptations": [
+        "Partition backend is explicit (Leiden or Louvain); dependency or runtime failures never silently select a different algorithm."
+      ],
+      "sha256": "8e1d7fb76bb370d4a189d758333ea5680dffeca5162951d67eff360b586d6d73"
+    },
+    {
+      "file": "Spatial realization/spatial_factorization.py",
+      "source_module": "synergy_roi_dtw.py",
+      "source_sha256": "6cde98a6279c3ae9b4648e8566246b640be01b3f8d5e2aff6fce3442af26ca71",
+      "definitions": [
+        {
+          "name": "GraphSynergyNMF",
+          "line_start": 680,
+          "line_end": 692
+        }
+      ],
+      "adaptations": [
+        "Dependency imports isolated from the original application; numerical implementation and defaults retained."
+      ],
+      "sha256": "46888322e9b8c73e8a0fed33274aa771558429a10ad85060fbeeae334d5ee712"
+    },
+    {
+      "file": "Temporal realization/temporal_attention.py",
+      "source_module": "run_modules/manifold_dynamics_framework.py",
+      "source_sha256": "ac332d1e07d3405653f5a4e6c884084812e2bd5e2a3727a41cdff06a247fd03f",
+      "definitions": [
+        {
+          "name": "_CausalTCNBlock",
+          "line_start": 2625,
+          "line_end": 2647
+        },
+        {
+          "name": "PersonSpecificTemporalAttention",
+          "line_start": 2650,
+          "line_end": 2756
+        }
+      ],
+      "adaptations": [
+        "Renamed the historical _CausalTCNBlock to WindowNormalizedTCNBlock, without changing its numerical behavior: window-wide GroupNorm is not causal on a complete sequence. Current encode uses the separate frame-wise path."
+      ],
+      "sha256": "e4d54432051ad2cebf05cd6611e0603be0735f6eb2f9be3e79c21ea0dc60f37f"
+    },
+    {
+      "file": "Temporal realization/temporal_graph.py",
+      "source_module": "run_modules/synergy_pipeline.py",
+      "source_sha256": "0955f668b8c2ce1c54e7b9407414cf63b280e86aa56c92bc0874d588c3d8edca",
+      "definitions": [
+        {
+          "name": "_te_roi_distance_tier_masks",
+          "line_start": 14853,
+          "line_end": 14927
+        },
+        {
+          "name": "_te_spatial_nearest_edge_allowed",
+          "line_start": 14930,
+          "line_end": 14956
+        },
+        {
+          "name": "_te_join_int_list_field",
+          "line_start": 14989,
+          "line_end": 14991
+        },
+        {
+          "name": "_te_build_local_propagation_forest_from_te",
+          "line_start": 15102,
+          "line_end": 15308
+        }
+      ],
+      "adaptations": [
+        "Forest settings are explicit keyword arguments with the original defaults; no hidden mutable module configuration is required."
+      ],
+      "sha256": "3037f10ba2fc4447818b6b2d9ae9d620f79f6e72afe44607d21636caa0d590cc"
+    },
+    {
+      "file": "Skill level estimation/multimodal_model.py",
+      "source_module": "action_model.py",
+      "source_sha256": "0ec704b07ad85dc7daf01b39993308139924bed9936e3386c41606dbc92c0eb9",
+      "definitions": [
+        {
+          "name": "ActionGNNSuite",
+          "line_start": 18,
+          "line_end": 172
+        }
+      ],
+      "adaptations": [
+        "Dependency imports isolated from the original application; numerical implementation and defaults retained."
+      ],
+      "sha256": "39143549881ef30c090cf7d21ed92a7df2d767fd72bdbf5cb58f65102bb95a60"
+    },
+    {
+      "file": "Skill level estimation/linear_classifier.py",
+      "source_module": "run_modules/manifold_dynamics_framework.py",
+      "source_sha256": "ac332d1e07d3405653f5a4e6c884084812e2bd5e2a3727a41cdff06a247fd03f",
+      "definitions": [
+        {
+          "name": "_fit_linear_svm_hinge",
+          "line_start": 9363,
+          "line_end": 9391
+        }
+      ],
+      "adaptations": [
+        "Dependency imports isolated from the original application; numerical implementation and defaults retained."
+      ],
+      "sha256": "19ef5ec2f418940a12d7cd08ef9c71d38e46c2e3db60ee8cf2f2eaf51fa242aa"
+    },
+    {
+      "file": "Interactive skill leraning/generative_model.py",
+      "source_module": "skillgen.py",
+      "source_sha256": "ffb16ee8026469959771ce5b4d5985e282943ffda9a4fdb87a99ddf09f887be3",
+      "definitions": [
+        {
+          "name": "GraphEncoder",
+          "line_start": 230,
+          "line_end": 246
+        },
+        {
+          "name": "TemporalEncoder",
+          "line_start": 249,
+          "line_end": 257
+        },
+        {
+          "name": "_normalize_envelope_torch",
+          "line_start": 390,
+          "line_end": 404
+        },
+        {
+          "name": "_tactile_envelope_torch",
+          "line_start": 423,
+          "line_end": 441
+        },
+        {
+          "name": "SinusoidalTimeEmbedding",
+          "line_start": 1177,
+          "line_end": 1190
+        },
+        {
+          "name": "TemporalSeqEncoder",
+          "line_start": 1193,
+          "line_end": 1201
+        },
+        {
+          "name": "StyleEncoder",
+          "line_start": 1204,
+          "line_end": 1228
+        },
+        {
+          "name": "_GradReverse",
+          "line_start": 1231,
+          "line_end": 1239
+        },
+        {
+          "name": "grad_reverse",
+          "line_start": 1242,
+          "line_end": 1243
+        },
+        {
+          "name": "ContentEncoder",
+          "line_start": 1246,
+          "line_end": 1264
+        },
+        {
+          "name": "LatentDecoder",
+          "line_start": 1267,
+          "line_end": 1339
+        },
+        {
+          "name": "LatentSkillAE",
+          "line_start": 1342,
+          "line_end": 1429
+        },
+        {
+          "name": "LatentDenoiser",
+          "line_start": 1432,
+          "line_end": 1487
+        },
+        {
+          "name": "LatentDiffusion",
+          "line_start": 1490,
+          "line_end": 1573
+        },
+        {
+          "name": "_extract_coeff",
+          "line_start": 1576,
+          "line_end": 1578
+        }
+      ],
+      "adaptations": [
+        "Dependency imports isolated from the original application; numerical implementation and defaults retained."
+      ],
+      "sha256": "f5d53ad2067227ee6460fdce1812d40ea762c8678db45765dad87bf6aae3c896"
+    },
+    {
+      "file": "Interactive skill leraning/reward_model.py",
+      "source_module": "synergy_traj_analysis.py",
+      "source_sha256": "816fc07ebdc883ed201d3fef71cf6105581a9b6434532766d0e1a0c93cb1772a",
+      "definitions": [
+        {
+          "name": "RewardModel",
+          "line_start": 1485,
+          "line_end": 1511
+        },
+        {
+          "name": "ImuPriorModel",
+          "line_start": 1514,
+          "line_end": 1540
+        }
+      ],
+      "adaptations": [
+        "Dependency imports isolated from the original application; numerical implementation and defaults retained."
+      ],
+      "sha256": "80756d93332404888f103952521e0764fa5c3b275bb10e5dd89b65a049c56bce"
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "scope": "synthetic_software_checks_not_manuscript_reproduction",
+  "passed": true,
+  "component_test_cases": 23,
+  "optional_leiden_check_passed": true,
+  "original_numerics_comparisons": [
+    "GCNBlock{'style': 'stacked'}",
+    "GCNBlock{'style': 'residual'}",
+    "SAGEBlock{'bias': False}",
+    "GATBlock{'heads': 2}",
+    "pose_model",
+    "multimodal_model",
+    "control_encode_and_predict",
+    "temporal_attention",
+    "latent_autoencoder",
+    "diffusion_sampling",
+    "reward_model",
+    "build_knn_adj",
+    "build_radius_adj",
+    "build_mst_adj",
+    "build_mst_knn_hybrid",
+    "build_fully_connected",
+    "explicit_leiden_matches_original_primary_backend",
+    "local_forest_original_defaults"
+  ],
+  "comparison_scope": "Exact equality on the listed representative valid synthetic inputs with identical model state; not all possible inputs or historical checkpoints.",
+  "installation": "Built and installed a wheel into an isolated local directory; application imports resolved to that installation.",
+  "environment": {
+    "python": "3.13.7",
+    "platform": "Windows",
+    "device": "CPU",
+    "packages": {
+      "numpy": "2.3.3",
+      "torch": "2.13.0+cpu",
+      "scipy": "1.16.2",
+      "scikit-learn": "1.9.0",
+      "networkx": "3.6.1",
+      "igraph": "1.0.0",
+      "leidenalg": "0.12.0",
+      "setuptools": "80.9.0"
+    }
+  },
+  "original_sources_unchanged": true,
+  "module_sha256": {
+    "Posture reconstruction/pose_model.py": "a1be7dba9eb80bf31a7d0384a973818b5c666d7164521611246b3b86dfc5e02e",
+    "Posture reconstruction/hand_kinematics.py": "07f7777ca4af5168697586745c09f78fde75c9db15cad022a07989294319043a",
+    "Posture reconstruction/grip_geometry.py": "f31ddd9509496608b72f3e7e1f2581679e25f1e0dd5fe800b7b40e2fdb86ecd8",
+    "Organization/control_model.py": "2e61a77fefa4ae438f6f6a571a565e40bb9162c038a14ffdcfbaeaa5329411b2",
+    "Organization/graph_blocks.py": "55f8f041936b09e6e54f96f4a6ca4f518fe1dc4ff07fd758d8c82d7c4762cc35",
+    "Spatial realization/graph_topology.py": "042672874376a53db42551dec620a4ec258d5fbdb838b88e8b9e521b9a154519",
+    "Spatial realization/roi_partition.py": "8e1d7fb76bb370d4a189d758333ea5680dffeca5162951d67eff360b586d6d73",
+    "Spatial realization/spatial_factorization.py": "46888322e9b8c73e8a0fed33274aa771558429a10ad85060fbeeae334d5ee712",
+    "Temporal realization/temporal_attention.py": "e4d54432051ad2cebf05cd6611e0603be0735f6eb2f9be3e79c21ea0dc60f37f",
+    "Temporal realization/temporal_graph.py": "3037f10ba2fc4447818b6b2d9ae9d620f79f6e72afe44607d21636caa0d590cc",
+    "Skill level estimation/multimodal_model.py": "39143549881ef30c090cf7d21ed92a7df2d767fd72bdbf5cb58f65102bb95a60",
+    "Skill level estimation/linear_classifier.py": "19ef5ec2f418940a12d7cd08ef9c71d38e46c2e3db60ee8cf2f2eaf51fa242aa",
+    "Interactive skill leraning/generative_model.py": "f5d53ad2067227ee6460fdce1812d40ea762c8678db45765dad87bf6aae3c896",
+    "Interactive skill leraning/reward_model.py": "80756d93332404888f103952521e0764fa5c3b275bb10e5dd89b65a049c56bce"
+  }
+}
