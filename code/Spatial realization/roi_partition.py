@@ -34,24 +34,6 @@ def _edge_weights_from_embeddings(z: np.ndarray, edges: List[tuple], sigma: floa
     weights = [float(math.exp(-(d * d) / (2.0 * sigma * sigma))) for d in dists]
     return (weights, sigma)
 
-def _modularity_from_edges(labels: np.ndarray, edges: List[tuple], weights: List[float], n_nodes: int) -> float:
-    if n_nodes <= 0 or not edges:
-        return 0.0
-    lab = np.asarray(labels, dtype=np.int64)
-    k = np.zeros(n_nodes, dtype=np.float64)
-    m = 0.0
-    for (u, v), w in zip(edges, weights):
-        k[u] += w
-        k[v] += w
-        m += w
-    if m <= 1e-12:
-        return 0.0
-    q = 0.0
-    for (u, v), w in zip(edges, weights):
-        if lab[u] == lab[v]:
-            q += w - k[u] * k[v] / (2.0 * m)
-    return float(q / (2.0 * m))
-
 def _partition_graph(z, edges, weights, resolution, seed, *, backend='leiden'):
     """Partition a weighted graph with an explicit, never silently changed backend.
 

@@ -15,7 +15,7 @@
       "adaptations": [
         "Dependency imports isolated from the original application; numerical implementation and defaults retained."
       ],
-      "sha256": "a1be7dba9eb80bf31a7d0384a973818b5c666d7164521611246b3b86dfc5e02e"
+      "sha256": "d6aa28d5b88071f3cd4f3c135ea4e3df1059d53b38ba428bcbc85bc77aa726cf"
     },
     {
       "file": "Posture reconstruction/hand_kinematics.py",
@@ -31,7 +31,7 @@
       "adaptations": [
         "The selected static helpers are named PlanarHandKinematics, not a complete HandPoseEstimator."
       ],
-      "sha256": "07f7777ca4af5168697586745c09f78fde75c9db15cad022a07989294319043a"
+      "sha256": "ec6a8383d81955f54d893ea227b0a806303bd366750ae975a70a3571020ec956"
     },
     {
       "file": "Posture reconstruction/grip_geometry.py",
@@ -87,7 +87,7 @@
       "adaptations": [
         "Dependency imports isolated from the original application; numerical implementation and defaults retained."
       ],
-      "sha256": "f31ddd9509496608b72f3e7e1f2581679e25f1e0dd5fe800b7b40e2fdb86ecd8"
+      "sha256": "c7ee15cceb6554d7e124762cddefe60dcfa54eef27f2c6eed85b70006a877bd9"
     },
     {
       "file": "Organization/control_model.py",
@@ -128,7 +128,7 @@
       "adaptations": [
         "Renamed the historical _CausalTCNBlock to WindowNormalizedTCNBlock, without changing its numerical behavior: window-wide GroupNorm is not causal on a complete sequence. Current encode uses the separate frame-wise path."
       ],
-      "sha256": "2e61a77fefa4ae438f6f6a571a565e40bb9162c038a14ffdcfbaeaa5329411b2"
+      "sha256": "07a00337b7b9ee484907e5144875265e6707479b0b6b5007e816814ec1e954e6"
     },
     {
       "file": "Organization/graph_blocks.py",
@@ -170,7 +170,7 @@
         "Original constructor defaults restored.",
         "Non-contiguous inputs supported; invalid graph dimensions, nonfinite adjacency and all-masked attention rows rejected."
       ],
-      "sha256": "55f8f041936b09e6e54f96f4a6ca4f518fe1dc4ff07fd758d8c82d7c4762cc35"
+      "sha256": "516e6d5c0b123f9d4e2da637753db3450a2628989a158985a58875a0a7692739"
     },
     {
       "file": "Spatial realization/graph_topology.py",
@@ -216,7 +216,7 @@
       "adaptations": [
         "Single-node and zero-neighbor graphs respect self_loop; negative neighbor counts are rejected."
       ],
-      "sha256": "042672874376a53db42551dec620a4ec258d5fbdb838b88e8b9e521b9a154519"
+      "sha256": "d20dd033820b78488305270b1e0ca0bd34204ba497bef46d846c1ba4e49810b8"
     },
     {
       "file": "Spatial realization/roi_partition.py",
@@ -234,11 +234,6 @@
           "line_end": 4311
         },
         {
-          "name": "_modularity_from_edges",
-          "line_start": 4314,
-          "line_end": 4333
-        },
-        {
           "name": "_partition_graph",
           "line_start": 4336,
           "line_end": 4394
@@ -250,9 +245,10 @@
         }
       ],
       "adaptations": [
-        "Partition backend is explicit (Leiden or Louvain); dependency or runtime failures never silently select a different algorithm."
+        "Partition backend is explicit (Leiden or Louvain); dependency or runtime failures never silently select a different algorithm.",
+        "Removed the unused, nonstandard _modularity_from_edges helper; partition backend implementations and scores unchanged."
       ],
-      "sha256": "8e1d7fb76bb370d4a189d758333ea5680dffeca5162951d67eff360b586d6d73"
+      "sha256": "c77b6b98dd84fb12c45d1d6eb02747ec71f029b744ae4f6db04d89ce5ae48a16"
     },
     {
       "file": "Spatial realization/spatial_factorization.py",
@@ -268,7 +264,7 @@
       "adaptations": [
         "Dependency imports isolated from the original application; numerical implementation and defaults retained."
       ],
-      "sha256": "46888322e9b8c73e8a0fed33274aa771558429a10ad85060fbeeae334d5ee712"
+      "sha256": "b9f06b2acc7d2f7abcec956dec2b252944504b0134bddcc930eb09dcf1c2e0af"
     },
     {
       "file": "Temporal realization/temporal_attention.py",
@@ -289,7 +285,7 @@
       "adaptations": [
         "Renamed the historical _CausalTCNBlock to WindowNormalizedTCNBlock, without changing its numerical behavior: window-wide GroupNorm is not causal on a complete sequence. Current encode uses the separate frame-wise path."
       ],
-      "sha256": "e4d54432051ad2cebf05cd6611e0603be0735f6eb2f9be3e79c21ea0dc60f37f"
+      "sha256": "570b305f1ba902584be1b9e41838655d48eee734648b5c0dfdb299106b40b8fc"
     },
     {
       "file": "Temporal realization/temporal_graph.py",
@@ -320,7 +316,7 @@
       "adaptations": [
         "Forest settings are explicit keyword arguments with the original defaults; no hidden mutable module configuration is required."
       ],
-      "sha256": "3037f10ba2fc4447818b6b2d9ae9d620f79f6e72afe44607d21636caa0d590cc"
+      "sha256": "903cd01a3df41ce7dee10463881001db8c368ec4dd9f3c737882d249d1b839ba"
     },
     {
       "file": "Skill level estimation/multimodal_model.py",
@@ -336,109 +332,7 @@
       "adaptations": [
         "Dependency imports isolated from the original application; numerical implementation and defaults retained."
       ],
-      "sha256": "39143549881ef30c090cf7d21ed92a7df2d767fd72bdbf5cb58f65102bb95a60"
-    },
-    {
-      "file": "Skill level estimation/linear_classifier.py",
-      "source_module": "run_modules/manifold_dynamics_framework.py",
-      "source_sha256": "ac332d1e07d3405653f5a4e6c884084812e2bd5e2a3727a41cdff06a247fd03f",
-      "definitions": [
-        {
-          "name": "_fit_linear_svm_hinge",
-          "line_start": 9363,
-          "line_end": 9391
-        }
-      ],
-      "adaptations": [
-        "Dependency imports isolated from the original application; numerical implementation and defaults retained."
-      ],
-      "sha256": "19ef5ec2f418940a12d7cd08ef9c71d38e46c2e3db60ee8cf2f2eaf51fa242aa"
-    },
-    {
-      "file": "Interactive skill leraning/generative_model.py",
-      "source_module": "skillgen.py",
-      "source_sha256": "ffb16ee8026469959771ce5b4d5985e282943ffda9a4fdb87a99ddf09f887be3",
-      "definitions": [
-        {
-          "name": "GraphEncoder",
-          "line_start": 230,
-          "line_end": 246
-        },
-        {
-          "name": "TemporalEncoder",
-          "line_start": 249,
-          "line_end": 257
-        },
-        {
-          "name": "_normalize_envelope_torch",
-          "line_start": 390,
-          "line_end": 404
-        },
-        {
-          "name": "_tactile_envelope_torch",
-          "line_start": 423,
-          "line_end": 441
-        },
-        {
-          "name": "SinusoidalTimeEmbedding",
-          "line_start": 1177,
-          "line_end": 1190
-        },
-        {
-          "name": "TemporalSeqEncoder",
-          "line_start": 1193,
-          "line_end": 1201
-        },
-        {
-          "name": "StyleEncoder",
-          "line_start": 1204,
-          "line_end": 1228
-        },
-        {
-          "name": "_GradReverse",
-          "line_start": 1231,
-          "line_end": 1239
-        },
-        {
-          "name": "grad_reverse",
-          "line_start": 1242,
-          "line_end": 1243
-        },
-        {
-          "name": "ContentEncoder",
-          "line_start": 1246,
-          "line_end": 1264
-        },
-        {
-          "name": "LatentDecoder",
-          "line_start": 1267,
-          "line_end": 1339
-        },
-        {
-          "name": "LatentSkillAE",
-          "line_start": 1342,
-          "line_end": 1429
-        },
-        {
-          "name": "LatentDenoiser",
-          "line_start": 1432,
-          "line_end": 1487
-        },
-        {
-          "name": "LatentDiffusion",
-          "line_start": 1490,
-          "line_end": 1573
-        },
-        {
-          "name": "_extract_coeff",
-          "line_start": 1576,
-          "line_end": 1578
-        }
-      ],
-      "adaptations": [
-        "Dependency imports isolated from the original application; numerical implementation and defaults retained."
-      ],
-      "sha256": "f5d53ad2067227ee6460fdce1812d40ea762c8678db45765dad87bf6aae3c896"
+      "sha256": "06369c976509399ba111554e380ee18c435d7ce9a522bb9ac04e505a60a38c85"
     },
     {
       "file": "Interactive skill leraning/reward_model.py",
@@ -459,7 +353,8 @@
       "adaptations": [
         "Dependency imports isolated from the original application; numerical implementation and defaults retained."
       ],
-      "sha256": "80756d93332404888f103952521e0764fa5c3b275bb10e5dd89b65a049c56bce"
+      "sha256": "9080cc71c2aea0ca8bff36d4c8041894bfee4a7b9a250d575d84902e484fd5a6"
     }
-  ]
+  ],
+  "release_version": "0.3.0"
 }

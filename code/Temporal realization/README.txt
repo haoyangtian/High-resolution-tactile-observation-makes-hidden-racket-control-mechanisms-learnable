@@ -2,7 +2,7 @@ Temporal realization
 
 Temporal attention and a local forest utility consuming supplied edge weights; no transfer-entropy significance estimation or cohort-level manuscript tree pipeline.
 
-Install from the repository root with: python -m pip install .
+Install from the code/ directory with: python -m pip install .
 Import namespace: tactile_components.temporal
 Modules: temporal_attention, temporal_graph
 

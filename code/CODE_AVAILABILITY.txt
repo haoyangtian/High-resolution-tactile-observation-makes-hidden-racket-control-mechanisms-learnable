@@ -3,8 +3,9 @@ Scope of this code release
 Selected source code for the model and algorithm components is provided,
 including numeric constants and constructor defaults. This release excludes
 statistical analysis, manuscript metric aggregation and figure-generation
-scripts. It also excludes study datasets, trained weights and complete
-experiment orchestration. Accordingly, this repository alone does not provide
+scripts. This code directory also excludes trained weights and complete
+experiment orchestration. Separately released study recordings and restoration
+instructions are available in ../data/. Accordingly, this repository alone does not provide
 an end-to-end reproduction of the main results.
 
 This statement describes the contents of this directory. It does not assert

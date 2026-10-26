@@ -1,3 +1,22 @@
+Component release 0.3.0 (2026-10-26)
+
+- Removed the standalone latent autoencoder/diffusion prototype. Current motion
+  guidance uses RewardModel and the conditional Gaussian ImuPriorModel instead.
+- Removed the standalone binary SVM helper from the historical zero-shot
+  eta/Koopman-feature analysis; retained multimodal proficiency feedback.
+- Removed the unused _modularity_from_edges helper, whose calculation did not
+  implement standard modularity. Neither partition backend called it; their
+  code and backend-provided scores are unchanged.
+- Removed the empty readme placeholder and the three synthetic tests specific
+  to the removed models. Retained all 20 tests of the remaining components.
+- Updated package documentation, the source manifest and validation record.
+  Study data and analysis results were not modified.
+
+The removed modules were not dependencies of the retained components. Legacy
+branches within the control model remain intact for state-dictionary compatibility.
+The 0.2.0 source is retained in Git history at commit
+2eb4dda3d1acabb02e2caf1ad5b2900c8d517535.
+
 Component release 0.2.0
 
 This replaces the earlier non-executable redacted excerpt package.

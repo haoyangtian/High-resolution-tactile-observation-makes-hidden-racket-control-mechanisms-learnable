@@ -2,7 +2,7 @@ Spatial realization
 
 Adjacency construction, explicit graph partition backends and non-negative factorization; no cohort comparisons or manuscript residual metrics.
 
-Install from the repository root with: python -m pip install .
+Install from the code/ directory with: python -m pip install .
 Import namespace: tactile_components.spatial
 Modules: graph_topology, roi_partition, spatial_factorization
 

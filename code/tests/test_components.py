@@ -20,8 +20,6 @@ from tactile_components.spatial.spatial_factorization import GraphSynergyNMF
 from tactile_components.temporal.temporal_attention import PersonSpecificTemporalAttention, WindowNormalizedTCNBlock
 from tactile_components.temporal.temporal_graph import build_temporal_forest
 from tactile_components.skill.multimodal_model import ActionGNNSuite
-from tactile_components.skill.linear_classifier import _fit_linear_svm_hinge
-from tactile_components.learning.generative_model import LatentSkillAE, LatentDiffusion
 from tactile_components.learning.reward_model import RewardModel, ImuPriorModel
 
 
@@ -38,8 +36,8 @@ class Components(unittest.TestCase):
             "organization": ["control_model", "graph_blocks"],
             "spatial": ["graph_topology", "roi_partition", "spatial_factorization"],
             "temporal": ["temporal_attention", "temporal_graph"],
-            "skill": ["multimodal_model", "linear_classifier"],
-            "learning": ["generative_model", "reward_model"],
+            "skill": ["multimodal_model"],
+            "learning": ["reward_model"],
         }
         for group, names in modules.items():
             for name in names:
@@ -249,34 +247,6 @@ class Components(unittest.TestCase):
                 self.assertEqual(logits.shape, (2, 3))
                 self.assertTrue(bool(torch.isfinite(features).all()))
                 torch.testing.assert_close(attention.sum(-1), torch.ones(2, 7))
-
-    def test_linear_classifier_on_synthetic_separable_points(self):
-        x = np.array([[-2., -1.], [-1., -2.], [1., 2.], [2., 1.]])
-        y = np.array([-1., -1., 1., 1.])
-        weights, bias = _fit_linear_svm_hinge(x, y, n_steps=120)
-        np.testing.assert_array_equal(np.sign(x @ weights + bias), y)
-
-    def test_latent_autoencoder_optional_envelope_and_gradient(self):
-        for envelope in (False, True):
-            model = LatentSkillAE(5, hidden=16, latent_c=16, latent_s=16,
-                                  n_levels=3, use_env_cond=envelope)
-            x = torch.randn(2, 7, 5, requires_grad=True)
-            out = model(x, torch.randn(2, 7, 6), self.adj)
-            self.assertEqual(out[0].shape, (2, 7, 5))
-            self.assertEqual(out[1].shape, (2, 7, 6))
-            self.assertEqual(out[2].shape, (2, 3))
-            sum(a.square().sum() for a in out).backward()
-            self.assertTrue(bool(torch.isfinite(x.grad).all()))
-
-    def test_diffusion_forward_noise_inverse_and_sampling(self):
-        model = LatentDiffusion(4, 4, hidden=16, timesteps=5)
-        z = torch.randn(2, 4)
-        noise = torch.randn_like(z)
-        t = torch.tensor([1, 4])
-        torch.testing.assert_close(model.predict_x0(model.q_sample(z, t, noise), t, noise), z)
-        out = model.sample_delta(z, torch.randn(2, 4), None, None)
-        self.assertEqual(out.shape, z.shape)
-        self.assertTrue(bool(torch.isfinite(out).all()))
 
     def test_reward_and_motion_prior(self):
         tac, imu = torch.randn(2, 7, 5), torch.randn(2, 7, 6)

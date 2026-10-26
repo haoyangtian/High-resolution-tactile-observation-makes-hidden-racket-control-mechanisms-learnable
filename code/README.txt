@@ -7,8 +7,10 @@ including numeric constants and constructor defaults. It is a partial source
 release, not an end-to-end reproduction package for the manuscript.
 
 Statistical inference, participant/group-level manuscript metric aggregation,
-figure-generation scripts, raw study data, participant identities, trained
-weights and complete experiment orchestration are not included. The synthetic
+figure-generation scripts, participant identities, trained weights and
+complete experiment orchestration are not included in this code directory.
+The separately released study recordings and restoration instructions are in
+../data/. The synthetic
 examples and tests verify software behavior only; they do not reproduce or
 validate the reported scientific results.
 
@@ -55,7 +57,18 @@ Example imports:
     from tactile_components.skill.multimodal_model import ActionGNNSuite
     from tactile_components.learning.reward_model import RewardModel
 
-Read the category README files for module coverage. PlanarHandKinematics
+Relationship to the manuscript
+
+    Posture reconstruction: main Fig. 2 and Supplementary Methods S7.
+    Organization: drive/grip control (main Figs. 2-3).
+    Spatial realization: force factorization and contact regions (Figs. 3-4).
+    Temporal realization: delayed control and regional ordering (Figs. 3-4).
+    Skill level estimation: proficiency-level feedback (main Fig. 5).
+    Interactive skill leraning: reward and motion-prior architectures
+        for motion guidance (Supplementary Methods S6).
+
+These mappings identify component roles, not complete figure-reproduction
+commands. Read the category README files for module coverage. PlanarHandKinematics
 contains selected static geometric helpers, not the complete hand pose solver.
 The temporal forest component accepts supplied edge weights and delays; it does
 not estimate transfer-entropy significance or recreate the final cohort-level
@@ -76,8 +89,8 @@ The source study files were not edited when this package was prepared.
 中文说明
 
 本目录是可使用的模型与算法组件包，数值参数和默认值已恢复。论文的统计
-检验、参与者/组别层面的指标汇总、绘图、真实数据、训练权重和完整实验
-调度不随附。因此，本包不能单独复现论文主要结果，也不作此承诺。
+检验、参与者/组别层面的指标汇总、绘图、训练权重和完整实验调度不随附。
+真实传感器记录及恢复说明位于 ../data/。本组件包不能单独复现论文主要结果。
 
 示例全部使用合成输入。测试通过只表示已检查的组件功能符合预期，不表示
 论文结论已被复现，或所有参数组合都已验证。源码默认值不等于所有论文
